@@ -1,0 +1,42 @@
+.header {
+  height: 0.8rem;
+  background: rgba(0, 0, 0, 0.9);
+
+  .header-body {
+    display: flex;
+    flex-wrap: nowrap;
+
+    .page-tabs {
+      flex: 1;
+      display: flex;
+      flex-wrap: nowrap;
+      justify-content: center;
+
+      .page-tab-item {
+        color: #fff;
+        min-width: 1.2rem;
+        font-size: 0.2rem;
+        transition: 0.3s;
+        cursor: pointer;
+      }
+
+      .page-tab-item.active {
+        font-size: 0.3rem;
+        background-color: #fd8403;
+      }
+    }
+
+    .logo {
+      width: 1rem;
+      text-align: center;
+      font-size: 0.3rem;
+      cursor: pointer;
+    }
+
+    .user {
+      width: 2rem;
+    }
+
+  }
+
+}

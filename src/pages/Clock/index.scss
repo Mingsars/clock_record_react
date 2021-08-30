@@ -1,0 +1,23 @@
+.clock {
+  position: relative;
+  min-height: 5rem;
+  background-color: #eee;
+
+  .no-item {
+    position: absolute;
+    width: 100%;
+    top: 50%;
+    transform: translateY(-50%);
+    font-size: 0.2rem;
+    text-align: center;
+
+    .add-clock-item {
+      font-size: 0.25rem;
+      color: #fd8403;
+      font-weight: 600;
+      cursor: pointer;
+      margin-left: 0.1rem;
+      margin-right: 0.1rem;
+    }
+  }
+}

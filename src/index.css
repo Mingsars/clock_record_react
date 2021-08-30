@@ -1,4 +1,75 @@
+* {margin: 0; padding: 0;box-sizing: border-box;}
+ul, li {list-style: none;}
+a {text-decoration: none; color: #000;}
+html{font-size: 100px;}
+
+.container {
+  width: 1280px;
+  margin: auto;
+}
+
+.flex {
+  display: flex;
+}
+.flex-center {
+  justify-content: center;
+}
+.flex-around {
+  justify-content: space-around;
+}
+.flex-between {
+  justify-content: space-between;
+}
+.flex-vertical-center {
+  align-items: center;
+}
+
+.line-height-60 {
+  line-height: 0.6rem;
+}
+.line-height-80 {
+  line-height: 0.8rem;
+}
+
+.full-height {
+  height: 100%;
+}
+
+/* 字体颜色渐变*/
+.gradient-text, .vip-text {
+  background-image: -webkit-linear-gradient(left, red, #fd8403, yellow);
+  -webkit-background-clip: text;
+  background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+.mr5 {
+  margin-right: 0.05rem;
+}
+.mr10 {
+  margin-right: 0.1rem;
+}
+.mr15 {
+  margin-right: 0.15rem;
+}
+.mr20 {
+  margin-right: 0.2rem;
+}
+.mt5 {
+  margin-top: 0.05rem;
+}
+.mt10 {
+  margin-top: 0.1rem;
+}
+.mt15 {
+  margin-top: 0.15rem;
+}
+.mt20 {
+  margin-top: 0.2rem;
+}
+
 body {
+  font-size: 0.16rem;
   margin: 0;
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
     'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
