@@ -1,23 +1,113 @@
 .clock {
   position: relative;
-  min-height: 5rem;
-  background-color: #eee;
+  background-color: rgba(0,0,0,0.8);
+  height: calc(100vh - 0.8rem);
 
-  .no-item {
-    position: absolute;
-    width: 100%;
-    top: 50%;
-    transform: translateY(-50%);
-    font-size: 0.2rem;
-    text-align: center;
+  .clock-content {
+    min-height: 5rem;
+    padding: 0.1rem 0.2rem;
+    color: #fff;
 
-    .add-clock-item {
-      font-size: 0.25rem;
-      color: #fd8403;
-      font-weight: 600;
+    .no-item {
+      position: absolute;
+      width: 100%;
+      top: 50%;
+      transform: translateY(-50%);
+      font-size: 0.2rem;
+      text-align: center;
+
+      .add-clock-item {
+        font-size: 0.25rem;
+        color: #fd8403;
+        font-weight: 600;
+        cursor: pointer;
+        margin-left: 0.1rem;
+        margin-right: 0.1rem;
+      }
+    }
+
+    .list-count {
+      width: 100%;
+      height: 0.4rem;
+      line-height: 0.4rem;
+      text-align: left;
+      font-size: 0.2rem;
+
+      > label {
+        font-size: 0.3rem;
+      }
+
+      .has-done {
+        color: rgb(82, 196, 26);
+      }
+
+      .all-count {
+        color: #fd8403;
+      }
+    }
+
+    .clock-item-add {
+      width: 3.5rem;
+      height: 3rem;
+      text-align: center;
+      line-height: 3rem;
+      font-size: 1rem;
+      border: 0.01rem dashed #ccc;
+      border-radius: 0.05rem;
       cursor: pointer;
-      margin-left: 0.1rem;
-      margin-right: 0.1rem;
+    }
+
+    .clock-item {
+      width: 3.5rem;
+      height: 3rem;
+      border: 0.01rem solid #ccc;
+      border-radius: 0.08rem;
+      padding: 0.2rem 0.1rem;
+      margin-right: 0.4rem;
+
+      >div {
+        margin-bottom: 0.15rem;
+      }
+
+      .clock-item-title {
+        color: #fff;
+      }
+
+      .clock-item-mask {
+        text-align: left;
+        font-size: 0.2rem;
+        height: 1.2rem;
+      }
+
+      .clock-item-btn {
+        text-align: center;
+        width: 100%;
+
+        >span {
+          display: inline-block;
+          width: 2rem;
+          height: 0.6rem;
+          line-height: 0.6rem;
+          font-size: 0.2rem;
+          border-radius: 0.05rem;
+        }
+      }
+
+      .clock-item-submit {
+
+        > span {
+          background: #fd8403;
+          cursor: pointer;
+        }
+      }
+
+      .clock-item-done {
+
+        > span {
+          background: rgb(82, 196, 26);
+        }
+      }
     }
   }
+
 }
