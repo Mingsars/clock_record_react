@@ -1,9 +1,9 @@
 .clock {
-  position: relative;
   background-color: rgba(0,0,0,0.8);
   height: calc(100vh - 0.8rem);
 
   .clock-content {
+    position: relative;
     min-height: 5rem;
     padding: 0.1rem 0.2rem;
     color: #fff;
@@ -83,7 +83,7 @@
         text-align: center;
         width: 100%;
 
-        >span {
+        .clock-submit-span {
           display: inline-block;
           width: 2rem;
           height: 0.6rem;
@@ -95,7 +95,7 @@
 
       .clock-item-submit {
 
-        > span {
+        .clock-submit-span {
           background: #fd8403;
           cursor: pointer;
         }
@@ -103,7 +103,7 @@
 
       .clock-item-done {
 
-        > span {
+        .clock-submit-span {
           background: rgb(82, 196, 26);
         }
       }
