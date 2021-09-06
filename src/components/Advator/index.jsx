@@ -3,7 +3,7 @@ import { Menu, Dropdown, message } from "antd";
 import { LogoutOutlined, SettingFilled } from "@ant-design/icons";
 import { userLogout } from "../../servers/login";
 import { iln8 } from "../../tools";
-import "./index.scss";
+import "./index.less";
 
 export default class Advator extends Component {
   state = {

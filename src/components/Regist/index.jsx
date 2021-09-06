@@ -3,7 +3,7 @@ import { Form, Input, Button, message } from "antd";
 import { iln8 } from "../../tools";
 import IdentifyCode from "../IdentifyCode";
 import { userRegist } from "../../servers/login";
-import "./index.scss";
+import "./index.less";
 
 export default class Login extends Component {
   state = { registBtnLoading: false };

@@ -5,7 +5,7 @@ import { iln8 } from "../../tools";
 import { AlertOutlined, PlusOutlined, CheckOutlined } from "@ant-design/icons";
 import { Input, Spin } from 'antd'
 import { userClock, getUserClockList } from '../../servers/clock'
-import "./index.scss";
+import "./index.less";
 
 const { TextArea } = Input;
 
@@ -42,10 +42,10 @@ export default class Clock extends Component {
   }
 
   getClockList = () => {
-    this.setState({contentLoading: true});
+    this.setState({ contentLoading: true });
     getUserClockList().then(res => {
       this.setState({ clockList: res.data });
-      this.setState({contentLoading: false});
+      this.setState({ contentLoading: false });
     })
   }
 
@@ -54,8 +54,8 @@ export default class Clock extends Component {
     const numOfHaveDone = clockList.filter(item => item.isCheck).length;
     const template =
       clockList.length === 0 ? (
-        <div className="clock">
-          <Spin spinning={contentLoading}>
+        <Spin spinning={contentLoading}>
+          <div className="clock">
             <div className="clock-content container">
               <div className="no-item">
                 <AlertOutlined
@@ -70,18 +70,18 @@ export default class Clock extends Component {
                 </p>
               </div>
             </div>
-          </Spin>
-          <Modal
-            visible={isModalShow}
-            title={modalType === "add" ? iln8("clock.add") : iln8("clock.edit")}
-            onCancel={this.hideModal}
-          >
-            <ClockItemDetail />
-          </Modal>
-        </div>
+            <Modal
+              visible={isModalShow}
+              title={modalType === "add" ? iln8("clock.add") : iln8("clock.edit")}
+              onCancel={this.hideModal}
+            >
+              <ClockItemDetail />
+            </Modal>
+          </div>
+        </Spin>
       ) : (
-          <div className="clock">
-            <Spin spinning={contentLoading}>
+          <Spin spinning={contentLoading}>
+            <div className="clock">
               <div className="clock-content container flex flex-wrap">
                 <div className="list-count">今日已完成 <label className="has-done">{numOfHaveDone}</label>  / <label className="all-count">{clockList.length}</label></div>
                 {
@@ -115,15 +115,15 @@ export default class Clock extends Component {
                   <PlusOutlined onClick={this.showModel("add")} />
                 </div>
               </div>
-            </Spin>
-            <Modal
-              visible={isModalShow}
-              title={modalType === "add" ? iln8("clock.add") : iln8("clock.edit")}
-              onCancel={this.hideModal}
-            >
-              <ClockItemDetail />
-            </Modal>
-          </div >
+              <Modal
+                visible={isModalShow}
+                title={modalType === "add" ? iln8("clock.add") : iln8("clock.edit")}
+                onCancel={this.hideModal}
+              >
+                <ClockItemDetail />
+              </Modal>
+            </div >
+          </Spin>
         );
     return template;
   }

@@ -1,6 +1,6 @@
 import Header from './components/Header'
 import Clock from './pages/Clock'
-import './App.css';
+import './App.less';
 
 function App() {
   return (

@@ -4,7 +4,7 @@ import Login from "../../components/Login";
 import Regist from "../../components/Regist";
 import { Button, Modal } from "antd";
 import { iln8 } from "../../tools";
-import "./index.scss";
+import "./index.less";
 
 export default class Header extends Component {
   state = {

@@ -2,7 +2,7 @@ import React, { Component } from "react";
 import { Form, Input, Button, message } from "antd";
 import { iln8 } from "../../tools";
 import { userLogin } from "../../servers/login";
-import "./index.scss";
+import "./index.less";
 
 export default class Login extends Component {
   state = {loginBtnLoading: false}
