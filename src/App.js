@@ -4,7 +4,7 @@ import './App.less';
 
 function App() {
   return (
-    <div className="App">
+    <div className="App theme-1">
       <Header/>
       <Clock/>
     </div>

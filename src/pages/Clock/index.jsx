@@ -5,7 +5,7 @@ import { iln8 } from "../../tools";
 import { AlertOutlined, PlusOutlined, CheckOutlined } from "@ant-design/icons";
 import { Input, Spin } from 'antd'
 import { userClock, getUserClockList } from '../../servers/clock'
-import "./index.less";
+import "./index.scss";
 
 const { TextArea } = Input;
 

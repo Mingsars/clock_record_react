@@ -2,28 +2,37 @@ import React, { Component } from "react";
 import { Form, Input, Button, message } from "antd";
 import { iln8 } from "../../tools";
 import { userLogin } from "../../servers/login";
+import InputWithLabel from '../InputWithLabel'
 import "./index.less";
 
 export default class Login extends Component {
-  state = {loginBtnLoading: false}
+  state = { loginBtnLoading: false }
 
-  onFinish = (val) => {
+  submit = () => {
     const { hideModal, changeLoginStatus } = this.props;
-    this.setState({loginBtnLoading: true});
-    userLogin(val).then(res => {
-      this.setState({loginBtnLoading: false});
-      message.success(res.msg);
-      changeLoginStatus(true);
-      hideModal();
-    }).catch(err => {
-      this.setState({loginBtnLoading: false});
-      message.error(err.msg);
-    })
-  };
-
-  onFinishFailed = () => {
-    message.error(iln8("login.loginFailed"));
-  };
+    const { username, password } = this;
+    const valOfUsername = username.state.value;
+    const valOfPassword = password.state.value;
+    if (!valOfUsername) {
+      return message.info('请输入账号');
+    } else if (!valOfPassword) {
+      return message.info('请输入密码');
+    } else {
+      this.setState({ loginBtnLoading: true });
+      userLogin({
+        username: valOfUsername,
+        password: valOfPassword,
+      }).then(res => {
+        this.setState({ loginBtnLoading: false });
+        message.success(res.msg);
+        changeLoginStatus(true);
+        hideModal();
+      }).catch(err => {
+        this.setState({ loginBtnLoading: false });
+        message.error(err.msg);
+      })
+    }
+  }
 
   forgetPassword = () => {
     message.info(iln8("login.forgetPassword"));
@@ -33,49 +42,41 @@ export default class Login extends Component {
     const { changeModalType } = this.props;
     changeModalType('regist');
   }
+
+  reset = () => {
+    const { username, password } = this
+    username.reset();
+    password.reset();
+  }
+
   render() {
     const { loginBtnLoading } = this.state;
     return (
       <div className="login-modal">
-        <Form
-          name="basic"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 20 }}
-          onFinish={this.onFinish}
-          onFinishFailed={this.onFinishFailed}
-        >
-          <Form.Item
-            label={iln8("login.username")}
-            name="username"
-            rules={[{ required: true, message: "请输入账号!" }]}
-          >
-            <Input placeholder="账号"/>
-          </Form.Item>
 
-          <Form.Item
-            label={iln8("login.password")}
-            name="password"
-            rules={[{ required: true, message: "请输入密码!" }]}
-          >
-            <Input.Password placeholder="密码"/>
-          </Form.Item>
+        <div className="modal-item">
+          <InputWithLabel label="账号" ref={c => this.username = c} />
+        </div>
 
-          <div className="flex flex-center">
-            <a href className="forget-password" onClick={this.forgetPassword}>
-              忘记密码
+        <div className="modal-item mt20">
+          <InputWithLabel label="密码" type="password" ref={c => this.password = c} />
+        </div>
+
+        <div className="modal-item flex flex-center mt5">
+          <a href className="forget-password" onClick={this.forgetPassword}>
+            忘记密码
             </a>
-          </div>
+        </div>
 
-          <Form.Item wrapperCol={{ offset: 0, span: 24 }}>
-            <Button type="primary" htmlType="submit" block loading={loginBtnLoading}>
-              {iln8("login.login")}
-            </Button>
-          </Form.Item>
+        <div className="modal-item">
+          <Button type="primary" onClick={this.submit} block loading={loginBtnLoading}>
+            {iln8("login.login")}
+          </Button>
+        </div>
 
-          <div className="no-account">
-            {iln8("login.noAccount")}? <a href onClick={this.regist}>{ iln8('login.regist') }</a>
-          </div>
-        </Form>
+        <div className="mt10 no-account">
+          {iln8("login.noAccount")}? <a href onClick={this.regist}>{iln8('login.regist')}</a>
+        </div>
       </div>
     );
   }

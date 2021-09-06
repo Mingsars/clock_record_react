@@ -1,0 +1,22 @@
+.input-with-label {
+    position: relative;
+
+    .input-label {
+        position: absolute;
+        left: 0.05rem;
+        top: 50%;
+        transform: translateY(-50%);
+        transition: 0.3s;
+        font-size: 0.16rem;
+        background: #fff;
+        color: #ccc;
+        z-index: 9999;
+    }
+
+    .input-label.focus {
+        font-size: 0.14rem;
+        top: -0.12rem;
+        transform: translateY(0);
+        color: #000; 
+    }
+}

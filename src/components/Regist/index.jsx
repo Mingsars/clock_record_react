@@ -3,6 +3,7 @@ import { Form, Input, Button, message } from "antd";
 import { iln8 } from "../../tools";
 import IdentifyCode from "../IdentifyCode";
 import { userRegist } from "../../servers/login";
+import InputWithLabel from '../InputWithLabel'
 import "./index.less";
 
 export default class Login extends Component {
@@ -31,6 +32,37 @@ export default class Login extends Component {
     }
   };
 
+  submit = () => {
+    const { hideModal, changeModalType } = this.props;
+    const { username, password, identifyCode, identifyEle } = this;
+    const valOfUsername = username.state.value;
+    const valOfPassword = password.state.value;
+    const valOfIdentifyCode = identifyCode.state.value;
+    if (!valOfUsername) {
+      return message.info('请输入账号');
+    } else if (!valOfPassword) {
+      return message.info('请输入密码');
+    } else if (!identifyEle.checkCode(valOfIdentifyCode)) {
+      message.error("验证码错误");
+    } else {
+      this.setState({ registBtnLoading: true });
+      userRegist({
+        username: valOfUsername,
+        password: valOfPassword,
+      })
+        .then((res) => {
+          message.success(res.msg);
+          changeModalType('login');
+        })
+        .catch((err) => {
+          message.error(err.msg);
+        })
+        .finally((_) => {
+          this.setState({ registBtnLoading: false });
+        });
+    }
+  }
+
   onFinishFailed = () => {
     message.error(iln8("login.loginFailed"));
   };
@@ -43,65 +75,42 @@ export default class Login extends Component {
     const { registBtnLoading } = this.state;
     return (
       <div className="regist-modal">
-        <Form
-          name="basic"
-          labelCol={{ span: 4 }}
-          wrapperCol={{ span: 20 }}
-          onFinish={this.onFinish}
-          onFinishFailed={this.onFinishFailed}
-        >
-          <Form.Item
-            label={iln8("login.username")}
-            name="username"
-            rules={[{ required: true, message: "请输入账号!" }]}
-          >
-            <Input size="large" placeholder="账号" />
-          </Form.Item>
+        <div className="modal-item">
+          <InputWithLabel label="账号" ref={c => this.username = c} />
+        </div>
 
-          <Form.Item
-            label={iln8("login.password")}
-            name="password"
-            rules={[{ required: true, message: "请输入密码!" }]}
-          >
-            <Input.Password size="large" placeholder="密码" />
-          </Form.Item>
+        <div className="modal-item mt20">
+          <InputWithLabel label="密码" type="password" ref={c => this.password = c} />
+        </div>
 
-          <Form.Item
-            label={iln8("login.identifyCode")}
-            name="identifyCode"
-            rules={[{ required: true, message: "请输入验证码!" }]}
-          >
-            <Input
-              size="large"
-              placeholder="验证码"
-              addonAfter={
-                <IdentifyCode
-                  ref={(c) => (this.identifyEle = c)}
-                  canvasWidth={100}
-                  canvasHeight={38}
-                />
-              }
+        <div className="modal-item mt20">
+          <InputWithLabel label="验证码" addonAfter={
+            <IdentifyCode
+              ref={(c) => (this.identifyEle = c)}
+              canvasWidth={100}
+              canvasHeight={38}
             />
-          </Form.Item>
+          } ref={c => this.identifyCode = c} />
+        </div>
 
-          <Form.Item wrapperCol={{ offset: 0, span: 24 }}>
-            <Button
-              type="primary"
-              htmlType="submit"
-              block
-              loading={registBtnLoading}
-            >
-              {iln8("login.freeRegist")}
-            </Button>
-          </Form.Item>
+        <div className="modal-item mt10">
+          <Button
+            type="primary"
+            onClick={this.submit}
+            block
+            loading={registBtnLoading}
+          >
+            {iln8("login.freeRegist")}
+          </Button>
+        </div>
 
-          <div className="has-account">
-            {iln8("login.hasAccount")}?{" "}
-            <a href onClick={this.login}>
-              {iln8("login.login")}
-            </a>
-          </div>
-        </Form>
+        <div className="has-account mt5">
+          {iln8("login.hasAccount")}?{" "}
+          <a href onClick={this.login}>
+            {iln8("login.login")}
+          </a>
+        </div>
+
       </div>
     );
   }
