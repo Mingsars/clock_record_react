@@ -33,12 +33,12 @@ export default class Header extends Component {
 
   handleCancel = () => {
     const { loginModal, registModal } = this;
-    this.setState({ isModalShow: false });
     if (this.state.modalType === 'login') {
       loginModal.reset();
     } else {
       registModal.reset();
     }
+    this.setState({ isModalShow: false });
   };
 
   changeModalType = (type) => {

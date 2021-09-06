@@ -9,29 +9,6 @@ import "./index.less";
 export default class Login extends Component {
   state = { registBtnLoading: false };
 
-  onFinish = (val) => {
-    const { hideModal } = this.props;
-    const { identifyEle } = this;
-    this.setState({ registBtnLoading: true });
-    const { identifyCode } = val;
-    if (!identifyEle.checkCode(identifyCode)) {
-      message.error("验证码错误");
-      this.setState({ registBtnLoading: false });
-    } else {
-      userRegist(val)
-        .then((res) => {
-          message.success(res.msg);
-          hideModal();
-        })
-        .catch((err) => {
-          message.error(err.msg);
-        })
-        .finally((_) => {
-          this.setState({ registBtnLoading: false });
-        });
-    }
-  };
-
   submit = () => {
     const { hideModal, changeModalType } = this.props;
     const { username, password, identifyCode, identifyEle } = this;
@@ -71,6 +48,15 @@ export default class Login extends Component {
     const { changeModalType } = this.props;
     changeModalType("login");
   };
+
+  reset = () => {
+    const { username, password, identifyCode } = this
+    username.reset();
+    password.reset();
+    identifyCode.reset();
+  }
+
+
   render() {
     const { registBtnLoading } = this.state;
     return (
